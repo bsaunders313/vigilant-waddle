@@ -1,0 +1,73 @@
+from sense_hat import SenseHat
+from time import sleep 
+sense = SenseHat()
+
+o = (225, 125, 0)
+g = (0, 225, 0)
+w = (225, 225, 225)
+n = (0, 0, 0)
+
+Pet1 = [
+    n, n, n, n, n, n, n, n, 
+    n, w, o, o, o, o, w, n, 
+    n, o, g, o, o, g, o, n, 
+    n, n, o, o, o, o, n, n, 
+    n, o, n, o, o, n, o, n, 
+    n, n, n, o, o, n, n, n, 
+    n, n, o, n, n, o, n, n, 
+    n, n, w, n, n, w, n, n
+    ]
+  
+ 
+Pet2 = [
+    n, n, n, n, n, n, n, n, 
+    n, n, n, n, n, n, n, n, 
+    n, w, o, o, o, o, w, n, 
+    n, o, g, o, o, g, o, n, 
+    n, n, o, o, o, o, n, n, 
+    n, o, n, o, o, n, o, n,  
+    n, n, o, n, n, o, n, n, 
+    n, n, w, n, n, w, n, n
+    ]
+  
+Pet3 = [
+    n, n, n, n, n, n, n, n,
+    n, n, n, n, n, n, n, n,
+    n, w, o, o, o, o, w, n, 
+    n, o, g, o, o, g, o, n, 
+    n, n, o, o, o, o, n, n, 
+    n, o, n, o, o, n, o, n, 
+    n, n, n, o, o, n, n, n,  
+    n, n, n, w, w, n, n, n
+    ]
+  
+def dance():
+    for i in range(5):
+        sense.set_pixels(Pet1)
+        sleep(0.3)
+        sense.set_pixels(Pet2)
+        sleep(0.3)
+        sense.set_pixels(Pet3)
+        sleep(0.3)
+        sense.set_pixels(Pet2)
+        sleep(0.3)
+
+sense.clear()
+
+while True:
+    acc = sense.get_accelerometer_raw()
+    if (acc['x'] > 2) or (acc['y'] > 2) or (acc['z'] > 2):
+      dance()
+        
+        
+        
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
