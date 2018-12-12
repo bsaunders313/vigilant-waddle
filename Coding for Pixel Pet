@@ -7,6 +7,8 @@ g = (0, 225, 0)
 w = (225, 225, 225)
 n = (0, 0, 0)
 
+
+
 Pet1 = [
     n, n, n, n, n, n, n, n, 
     n, w, o, o, o, o, w, n, 
@@ -40,7 +42,39 @@ Pet3 = [
     n, n, n, o, o, n, n, n,  
     n, n, n, w, w, n, n, n
     ]
-  
+Pet4 = [ 
+    n, w, o, o, o, o, w, n, 
+    n, o, g, o, o, g, o, n, 
+    n, n, o, o, o, o, n, n, 
+    n, o, n, o, o, n, o, n, 
+    n, n, n, o, o, n, n, n, 
+    n, n, o, n, n, o, n, n, 
+    n, n, w, n, n, w, n, n,
+    n, n, n, n, n, n, n, n
+  ]
+
+Pet5 = [
+    n, n, n, n, n, n, n, n,
+    w, o, o, o, o, w, n, n, 
+    o, g, o, o, g, o, n, n, 
+    n, o, o, o, o, n, n, n,
+    n, n, o, o, n, o, n, n,
+    n, n, o, o, n, n, n, n,
+    n, o, n, n, o, n, n, n,
+    n, w, n, n, w, n, n, n
+    ]
+
+Pet6 = [
+    n, n, n, n, n, n, n, n,  
+    n, n, w, o, o, o, o, w,  
+    n, n, o, g, o, o, g, o,  
+    n, n, n, o, o, o, o, n,  
+    n, n, o, n, o, o, n, o,  
+    n, n, n, n, o, o, n, n,  
+    n, n, n, o, n, n, o, n,  
+    n, n, n, w, n, n, w, n, 
+    ]
+
 def dance():
     for i in range(5):
         sense.set_pixels(Pet1)
@@ -55,19 +89,27 @@ def dance():
 sense.clear()
 
 while True:
-    acc = sense.get_accelerometer_raw()
+    acc = sense.get_accelerometer_raw()  
     if (acc['x'] > 2) or (acc['y'] > 2) or (acc['z'] > 2):
-      dance()
-        
-        
-        
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+        dance()
+
+    for event in sense.stick.get_events():
+        if event.direction == "up":
+            sense.set_pixels(Pet1)
+        elif event.direction == "down":
+            sense.set_pixels(Pet2)
+        elif event.direction == "left":
+            sense.set_pixels(Pet5)
+            sleep(0.3)
+            sense.set_pixels(Pet1)
+        elif event.direction == "right":
+            sense.set_pixels(Pet6)
+            sleep(0.3)
+            sense.set_pixels(Pet1)
+        elif event.direction == "middle":
+            sense.set_pixels(Pet4)
+            sleep(0.2)
+            sense.set_pixels(Pet1)
+            
+            
+            
